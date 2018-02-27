@@ -23,6 +23,28 @@ function createWindow () {
   })
 }
 
+function createModal(backgroundColor) {
+  // red: "#ef5350" green: #66bb6a
+
+  const modalPath = path.join('file://', __dirname, '../view/alert-modal.html')
+
+  let modalWin = new BrowserWindow({
+    modal: true,
+    parent: mainWindow,
+    x: 100,
+    y: 100,
+    width: 350,
+    height: 200,
+    frame: false,
+    backgroundColor: backgroundColor
+  })
+
+  modalWin.on('close', () => { modalWin = null })
+  modalWin.loadURL(modalPath)
+  modalWin.show()
+}
+
+
 app.on('ready', createWindow)
 
 app.on('window-all-closed', function () {
@@ -36,3 +58,4 @@ app.on('activate', function () { // OS X
 })
 
 //////// Anciliary main process code here
+
